@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oj2-cz-tMa">
+                                <rect key="frame" x="80" y="70" width="30" height="30"/>
+                                <state key="normal" title="link"/>
+                                <connections>
+                                    <action selector="link" destination="BYZ-38-t0r" eventType="touchUpInside" id="5aM-2a-OH5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JhW-nL-cbn">
+                                <rect key="frame" x="261" y="70" width="34" height="30"/>
+                                <state key="normal" title="send"/>
+                                <connections>
+                                    <action selector="send" destination="BYZ-38-t0r" eventType="touchUpInside" id="5na-PK-F8U"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UQH-dn-Lpw">
+                                <rect key="frame" x="80" y="150" width="30" height="30"/>
+                                <state key="normal" title="cut"/>
+                                <connections>
+                                    <action selector="cut" destination="BYZ-38-t0r" eventType="touchUpInside" id="g11-HY-APt"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Fm-sS-XKa">
+                                <rect key="frame" x="261" y="150" width="34" height="30"/>
+                                <state key="normal" title="clear"/>
+                                <connections>
+                                    <action selector="clear" destination="BYZ-38-t0r" eventType="touchUpInside" id="etH-Hi-dWt"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdF-Ka-pDI">
+                                <rect key="frame" x="50" y="230" width="275" height="387"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Oj2-cz-tMa" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="1ll-yL-Wc5"/>
+                            <constraint firstItem="Oj2-cz-tMa" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="80" id="Bhf-Uo-Far"/>
+                            <constraint firstItem="UQH-dn-Lpw" firstAttribute="top" secondItem="Oj2-cz-tMa" secondAttribute="bottom" constant="50" id="H5w-7e-6Am"/>
+                            <constraint firstItem="JhW-nL-cbn" firstAttribute="centerY" secondItem="Oj2-cz-tMa" secondAttribute="centerY" id="MUN-SC-vt0"/>
+                            <constraint firstItem="vdF-Ka-pDI" firstAttribute="top" secondItem="9Fm-sS-XKa" secondAttribute="bottom" constant="50" id="N5i-n3-7kD"/>
+                            <constraint firstItem="9Fm-sS-XKa" firstAttribute="centerX" secondItem="JhW-nL-cbn" secondAttribute="centerX" id="OsD-Vl-V6W"/>
+                            <constraint firstItem="9Fm-sS-XKa" firstAttribute="centerY" secondItem="UQH-dn-Lpw" secondAttribute="centerY" id="Xxe-4T-vrV"/>
+                            <constraint firstAttribute="trailing" secondItem="vdF-Ka-pDI" secondAttribute="trailing" constant="50" id="aFs-Yn-9jY"/>
+                            <constraint firstItem="UQH-dn-Lpw" firstAttribute="centerX" secondItem="Oj2-cz-tMa" secondAttribute="centerX" id="cRl-Od-GrQ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="vdF-Ka-pDI" secondAttribute="bottom" constant="50" id="cUF-zQ-Fwi"/>
+                            <constraint firstItem="vdF-Ka-pDI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="50" id="e4I-h2-xMW"/>
+                            <constraint firstAttribute="trailing" secondItem="JhW-nL-cbn" secondAttribute="trailing" constant="80" id="mt2-wA-F1B"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentTextView" destination="vdF-Ka-pDI" id="T1J-40-ApE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
