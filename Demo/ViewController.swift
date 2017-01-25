@@ -73,13 +73,13 @@ extension ViewController {
     /**
      * 代理方法2. 接收到服务器发送的数据时会调用
      * 参数 socketManager 本管理者
-     * 参数 data 所收到的数据(NSArray / NSDictionary)
+     * 参数 data 所收到的数据(Array / Dictionary)
      * 参数 dataLength 所收到的数据长度(字节)
      */
     func socketManager(_ socketManager: WGSocketManager, receiveData data: Any?, dataLength: Int) {
         
-        if let dic = data {
-            contentTextView.text = contentTextView.text + "\n" + "收到数据字节长度为" + String(dataLength) + "\n" + String(describing: dic)
+        if let tempData = data {
+            contentTextView.text = contentTextView.text + "\n" + "收到数据字节长度为" + String(dataLength) + "\n" + String(describing: tempData)
         }
     }
     
