@@ -1,4 +1,4 @@
-# SocketManager-Swift
+# WGSocketManager-Swift
 基于NSStream实现的Socket长连接小封装
 
 #搭建环境
@@ -94,7 +94,6 @@ let kCompressType = 0
 let kEncodeKey = "Veeco"
 ```
 
-* 这里需要强调的是, 服务器也必须遵循这个'7个字节'原则才能正常交流(当时同事是使用Java写的服务器, 用的AIO)
+* 这里需要强调的是, 服务器也必须遵循这个'7个字节'原则才能进行正常交流(当时同事使用Java写的服务器, 用AIO)
 
 ##第一次做关于Socket的项目, 难免有幼嫩的地方, 请大家多多指点, 谢谢!
-
