@@ -28,7 +28,7 @@ let kEncodeKey = "Veeco"
     /**
      * 代理方法2. 接收到服务器发送的数据时会调用
      * 参数 socketManager 本管理者
-     * 参数 data 所收到的数据(NSArray / NSDictionary)
+     * 参数 data 所收到的数据(Array / Dictionary)
      * 参数 dataLength 所收到的数据长度(字节)
      */
     @objc optional func socketManager(_ socketManager: WGSocketManager, receiveData data: Any?, dataLength: Int)
