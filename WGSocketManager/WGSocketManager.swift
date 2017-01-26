@@ -42,15 +42,6 @@ let kEncodeKey = "Veeco"
 
 class WGSocketManager: NSObject, StreamDelegate {
     
-    // 连接状态
-    enum Status: Int {
-        case StatusDisconnected = 1 // 连接断开
-        case StatusConnectBegin     // 连接开始
-        case StatusConnectingOne    // 连接中第一阶段
-        case StatusConnectingTwo    // 连接中第二阶段
-        case StatusConnected        // 连接完成
-    }
-    
     // MARK: - <属性>
     
     // .h
@@ -73,8 +64,6 @@ class WGSocketManager: NSObject, StreamDelegate {
     private var outputStream: OutputStream?
     // 未读取数据
     private var tempReadData = Data()
-    // 状态(初始化为断开状态)
-    private var status = Status.StatusDisconnected.rawValue
     // 单次接收数据长度(服务器告知)
     private var readDataLength = 0
     // 单次发送数据长度(告知服务器)
@@ -83,6 +72,8 @@ class WGSocketManager: NSObject, StreamDelegate {
     private var tempWriteData: Data?
     // 串行子队列
     private lazy var sSubQueue: DispatchQueue = { DispatchQueue(label: "sSubQueue") }()
+    // 是否已连接成功
+    private var connected = false
     
     // MARK: - <方法>
     
@@ -103,9 +94,6 @@ class WGSocketManager: NSObject, StreamDelegate {
 
             // 过滤
             if IP.lengthOfBytes(using: .utf8) == 0 || port == 0 { return }
-            
-            // 修改连接状态 修改后为 StatusConnectBegin
-            self.status += 1
             
             // 定义C语言输入输出流
             var readStream:Unmanaged<CFReadStream>?
@@ -144,7 +132,7 @@ class WGSocketManager: NSObject, StreamDelegate {
         sSubQueue.async {
             
             // 过滤
-            if self.status == Status.StatusDisconnected.rawValue { return }
+            if !self.connected { return }
             
             // 清空缓存数据
             self.tempReadData = Data()
@@ -160,7 +148,7 @@ class WGSocketManager: NSObject, StreamDelegate {
             self.outputStream?.remove(from: .main, forMode: .defaultRunLoopMode)
             
             // 重置状态
-            self.status = Status.StatusDisconnected.rawValue;
+            self.connected = false
         }
     }
     
@@ -174,7 +162,7 @@ class WGSocketManager: NSObject, StreamDelegate {
         sSubQueue.async {
 
             // 过滤
-            if self.status != Status.StatusConnected.rawValue { return }
+            if !self.connected { return }
 
             // 获取要发送的二进制数据
             let sendData = self.getSendDataFrom(originData: data)
@@ -461,10 +449,7 @@ class WGSocketManager: NSObject, StreamDelegate {
         switch eventCode {
             
         // 1. 输入输出流打开完成
-        case Stream.Event.openCompleted:
-            
-            // 修改连接状态
-            status += 1
+        case Stream.Event.openCompleted: break
             
         // 2. 有字节可读
         case Stream.Event.hasBytesAvailable:
@@ -478,10 +463,10 @@ class WGSocketManager: NSObject, StreamDelegate {
         // 3. 可以发送字节
         case Stream.Event.hasSpaceAvailable:
             
-            if status == Status.StatusConnectingTwo.rawValue {
+            if !connected {
             
-                // 修改连接状态 修改后变为 StatusConnected
-                self.status += 1
+                // 修改连接状态
+                connected = true
                 
                 // 调用代理方法1. 与服务器连接成功时会调用
                 if delegate != nil && delegate!.responds(to: #selector(WGSocketManagerDelegate.connectSucceededToServerWith(socketManager:))) {
