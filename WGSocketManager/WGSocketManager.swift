@@ -113,8 +113,8 @@ class WGSocketManager: NSObject, StreamDelegate {
                 self.outputStream?.delegate = self
                 
                 // 把输入输入流添加到主运行循环(不添加主运行循环, 代理有可能不工作)
-                self.inputStream?.schedule(in: .main, forMode: .defaultRunLoopMode)
-                self.outputStream?.schedule(in: .main, forMode: .defaultRunLoopMode)
+                self.inputStream?.schedule(in: .main, forMode: .commonModes)
+                self.outputStream?.schedule(in: .main, forMode: .commonModes)
                 
                 // 打开输入输出流
                 self.inputStream?.open()
@@ -144,8 +144,8 @@ class WGSocketManager: NSObject, StreamDelegate {
             self.outputStream?.close()
             
             // 从主运行循环移除
-            self.inputStream?.remove(from: .main, forMode: .defaultRunLoopMode)
-            self.outputStream?.remove(from: .main, forMode: .defaultRunLoopMode)
+            self.inputStream?.remove(from: .main, forMode: .commonModes)
+            self.outputStream?.remove(from: .main, forMode: .commonModes)
             
             // 重置状态
             self.connected = false
