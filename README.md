@@ -1,12 +1,12 @@
 # WGSocketManager-Swift
 iOS实现Socket长连接
 
-# 搭建环境
+## 搭建环境
 1. 将下载后的WGSocketManager文件夹拖进工程中
 2. 导入libz库(用于压缩处理)
 3. 创建与OC的桥接文件并导入头文件WGCompressManager.h即可(本来这一步不需要的, 压缩这一块用Swift真不知道该怎么写, 原谅我吧...)
 
-# 基本使用
+### 基本使用
 1.设置WGSocketManager单例对象的代理并遵守WGSocketManagerProtocol协议
 ```swift
 WGSocketManager.manager.delegate = self
